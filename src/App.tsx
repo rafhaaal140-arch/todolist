@@ -39,14 +39,7 @@ function App() {
 
   return (
     <div className="app-bg">
-      {/* Avatar */}
-      <div className="avatar-wrap">
-        <img
-          src="public/background.png"
-          alt="Foto Profil"
-          className="avatar-img"
-        />
-      </div>
+      
 
       {/* Header */}
       <h1 className="app-title">Todo Board</h1>
