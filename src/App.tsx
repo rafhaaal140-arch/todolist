@@ -63,7 +63,7 @@ function launchConfetti(canvas: HTMLCanvasElement) {
 
 // ── Particle Field ────────────────────────────────────────
 function initParticleField(canvas: HTMLCanvasElement) {
-  const ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d")!;
   if (!ctx) return () => {};
 
   let W = window.innerWidth;
@@ -297,15 +297,18 @@ function App() {
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
             onKeyDown={e => e.key === "Enter" && addTask()}
-            placeholder="Tambah task baru..."
+            placeholder="Tambah task baru:"
             className="task-input"
           />
-          <input 
-            type="date"
-            value={deadlineValue}
-            onChange={e => setDeadlineValue(e.target.value)}
-            className="task-date-input"
-          />
+          <div className="date-input-wrap">
+            <label className="date-label">Deadline:</label>
+            <input 
+              type="date"
+              value={deadlineValue}
+              onChange={e => setDeadlineValue(e.target.value)}
+              className="task-date-input"
+            />
+          </div>
           <button onClick={addTask} className="add-btn">+ Add</button>
         </div>
 

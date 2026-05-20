@@ -273,14 +273,33 @@ body {
   margin-bottom: 20px;
 }
 
-.task-date-input {
+.date-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   background: #162235;
   border: 1px solid #2c3e50;
-  color: #fff;
-  padding: 10px;
   border-radius: 8px;
+  padding: 0 10px;
+  transition: border-color 0.15s;
+}
+.date-input-wrap:focus-within {
+  border-color: rgba(100, 160, 255, 0.5);
+}
+.date-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(150, 190, 230, 0.7);
+  white-space: nowrap;
+}
+.task-date-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 10px 0;
   outline: none;
   font-family: inherit;
+  font-size: 13px;
 }
 
 /* Styling indikator deadline di dalam card */
