@@ -284,8 +284,7 @@ function App() {
       <canvas ref={confettiRef} className="confetti-canvas" />
 
       <div className="content">
-        <div className="avatar-wrap">
-          <img src="public/background.png" alt="Foto Profil" className="avatar-img" />
+        <div className="header">
         </div>
 
         <h1 className="app-title">Todo Board</h1>
