@@ -192,11 +192,11 @@ function initParticleField(canvas: HTMLCanvasElement) {
 function App() {
   const [tasks, setTasks]         = useState<Task[]>([]);
   const [inputValue, setInputValue] = useState("");
-  const [deadlineValue, setDeadlineValue] = useState(""); // State baru untuk input tanggal
+  const [deadlineValue, setDeadlineValue] = useState(""); 
   const confettiRef  = useRef<HTMLCanvasElement>(null);
   const particleRef  = useRef<HTMLCanvasElement>(null);
 
-  // Hook untuk memicu re-render berkala (setiap menit) agar sisa waktu deadline selalu up-to-date
+  // Memicu re-render berkala agar sisa waktu deadline ter-update otomatis
   const [, setTick] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setTick(t => t + 1), 60000);
@@ -224,8 +224,6 @@ function App() {
 
   const addTask = useCallback(() => {
     if (inputValue.trim() === "") return;
-    
-    // Jika user mengosongkan deadline, otomatis set ke hari ini
     const finalDeadline = deadlineValue || new Date().toISOString().split('T')[0];
 
     setTasks(prev => [...prev, { 
@@ -250,7 +248,6 @@ function App() {
     setTasks(prev => prev.filter(t => t.id !== taskId));
   }, []);
 
-  // Helper untuk menghitung sisa hari/jam
   const getDeadlineStatus = (deadlineStr: string, status: "todo" | "doing" | "done") => {
     if (status === "done") return { text: "Completed", class: "dl-done" };
 
@@ -273,7 +270,6 @@ function App() {
     }
   };
 
-  // Mengambil dan mengurutkan task berdasarkan deadline terdekat
   const getByStatus = (s: ColumnType) => {
     return tasks
       .filter(t => t.status === s)
@@ -295,7 +291,6 @@ function App() {
         <h1 className="app-title">Todo Board</h1>
         <p className="app-subtitle">Tasks: {tasks.length} · Personal assistant workspace</p>
 
-        {/* Input Row yang telah dimodifikasi */}
         <div className="input-row">
           <input
             type="text"
@@ -343,7 +338,6 @@ function App() {
                         <div key={task.id} className="task-card">
                           <p className="task-title">{task.title}</p>
                           
-                          {/* Label info deadline / timer */}
                           <div className={`task-deadline ${dl.class}`}>
                             <i className="ti ti-clock" aria-hidden="true"></i> {dl.text}
                           </div>
